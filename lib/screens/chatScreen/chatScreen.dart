@@ -1,7 +1,10 @@
 import 'package:college_project_doctor/constants/colors.dart';
 import 'package:college_project_doctor/constants/constants.dart';
 import 'package:college_project_doctor/constants/styles.dart';
+import 'package:college_project_doctor/modal/call.dart';
+import 'package:college_project_doctor/modal/user.dart';
 import 'package:college_project_doctor/services/database.dart';
+import 'package:college_project_doctor/utilities/callUtilities.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -9,16 +12,17 @@ import 'package:flutter/rendering.dart';
 class ChatScreen extends StatefulWidget {
   String doctorName;
   String chatRoomid;
-
-  ChatScreen({
-    this.doctorName,
-    this.chatRoomid,
-  });
+  String patientUid;
+  String patientName;
+  ChatScreen(
+      {this.doctorName, this.chatRoomid, this.patientUid, this.patientName});
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  Call sender;
+  Call reciever;
   Stream messageStream;
   DataBaseMethods _databaseServices = DataBaseMethods();
   TextEditingController messageController = TextEditingController();
@@ -35,6 +39,16 @@ class _ChatScreenState extends State<ChatScreen> {
       } else {
         print("value is null from initstate on chatscreen");
       }
+    });
+    setState(() {
+      sender = Call(
+        callerId: Constants.uid,
+        callerName: Constants.myName,
+      );
+      reciever = Call(
+        recieverName: widget.patientName,
+        recieverId: widget.patientUid,
+      );
     });
     super.initState();
   }
@@ -88,7 +102,7 @@ class _ChatScreenState extends State<ChatScreen> {
             height: 40,
             width: 40,
             decoration: BoxDecoration(shape: BoxShape.circle, color: green),
-            child: Icon(Icons.call),
+            child: IconButton(icon: Icon(Icons.call), onPressed: () async {}),
           ),
           SizedBox(
             width: 10,
@@ -97,7 +111,13 @@ class _ChatScreenState extends State<ChatScreen> {
             height: 40,
             width: 40,
             decoration: BoxDecoration(shape: BoxShape.circle, color: green),
-            child: Icon(Icons.video_call_rounded),
+            child: IconButton(
+                icon: Icon(Icons.video_call_rounded),
+                onPressed: () async {
+                  print("pressed");
+                  CallUtils.dial(sender, reciever, context);
+                  print(widget.patientUid);
+                }),
           )
         ],
       ),

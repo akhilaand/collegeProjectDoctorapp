@@ -35,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
               loading = false;
             });
 
-            Navigator.push(
+            Navigator.pushReplacement(
               context,
               MaterialPageRoute(builder: (context) => Bottom_Navigation()),
             );
@@ -97,7 +97,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   print("error from shared preferance $error"));
                           HelperFunctions.saveUserLoggedInSharedPreference(
                               true);
-                          Navigator.push(
+                          Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => Bottom_Navigation()),

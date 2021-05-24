@@ -56,8 +56,11 @@ class _ChatMainScreenState extends State<ChatMainScreen> {
                 shrinkWrap: true,
                 itemCount: snapshot.data.docs.length,
                 itemBuilder: (context, index) {
+                  print("this ${Constants.myName}");
                   return ChatRoomListTile(
                     chatRoom: snapshot.data.docs[index].get("chatRoomId"),
+                    patientUid: snapshot.data.docs[index].get("userUid"),
+                    patientName: snapshot.data.docs[index].get("userName"),
                     username: snapshot.data.docs[index]
                         .get("chatRoomId")
                         .toString()
@@ -82,11 +85,10 @@ class _ChatMainScreenState extends State<ChatMainScreen> {
 class ChatRoomListTile extends StatelessWidget {
   final String username;
   final String chatRoom;
-
-  ChatRoomListTile({
-    this.username,
-    this.chatRoom,
-  });
+  final String patientUid;
+  final String patientName;
+  ChatRoomListTile(
+      {this.username, this.chatRoom, this.patientUid, this.patientName});
 
   @override
   Widget build(BuildContext context) {
@@ -99,9 +101,10 @@ class ChatRoomListTile extends StatelessWidget {
                 context,
                 MaterialPageRoute(
                     builder: (context) => ChatScreen(
-                          chatRoomid: chatRoom,
-                          doctorName: username,
-                        )));
+                        chatRoomid: chatRoom,
+                        doctorName: username,
+                        patientName: patientName,
+                        patientUid: patientUid)));
           },
           child: Padding(
             padding: const EdgeInsets.all(8.0),

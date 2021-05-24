@@ -16,6 +16,12 @@ class HelperFunctions {
     SharedPreferences _prefs = await SharedPreferences.getInstance();
     return await _prefs.setString(SharedPreferenceUserNameKey, userNmae);
   }
+  static Future<bool> remove() async {
+    SharedPreferences _prefs = await SharedPreferences.getInstance();
+    await _prefs.remove(sharedPreferenceUserLoginKey);
+    await _prefs.remove(SharedPreferenceUserNameKey);
+    await _prefs.remove(SharedPreferenceUsereUIDKey);
+  }
 
   static Future<bool> saveUserUIDSharedPreference(String UID) async {
     SharedPreferences _prefs = await SharedPreferences.getInstance();

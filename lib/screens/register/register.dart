@@ -112,7 +112,8 @@ class _RegisterState extends State<Register> {
                           Map<String, String> doctorDetailMap = {
                             "name": _nameController.text,
                             "specializedArea": _speialisedController.text,
-                            "downloadUrl": downloadedUrl
+                            "downloadUrl": downloadedUrl,
+                            "doctorUid": user.uid
                           };
                           _dataBaseMethods.uploadDoctorDetail(
                               doctorDetailMap, user.uid);
