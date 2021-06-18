@@ -81,16 +81,12 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         title: Row(
           children: [
-            // CircleAvatar(
-            //   radius: 20,
-            //   child: ClipRRect(
-            //     borderRadius: BorderRadius.circular(40),
-            //     child: Image.network(
-            //       widget.doctorPic,
-            //       fit: BoxFit.cover,
-            //     ),
-            //   ),
-            // ),
+            CircleAvatar(
+              radius: 20,
+              backgroundImage: AssetImage(
+                  "assets/images/avatar.jpg"
+              ),
+            ),
             SizedBox(
               width: 10,
             ),
@@ -118,7 +114,15 @@ class _ChatScreenState extends State<ChatScreen> {
                   CallUtils.dial(sender, reciever, context);
                   print(widget.patientUid);
                 }),
-          )
+          ),
+          
+          IconButton(
+              icon: Icon(Icons.more_vert),
+              onPressed: () async {
+                print("pressed");
+                CallUtils.dial(sender, reciever, context);
+                print(widget.patientUid);
+              }),
         ],
       ),
       body: Column(

@@ -112,6 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                                   "Gender : ${snapshot.data.docs[index]["gender"]}")
                                                             ],
                                                           ),
+                                                          trailing: Text("Date : ${snapshot.data.docs[index]["date"]}"),
                                                         ),
                                                       ),
                                                     )

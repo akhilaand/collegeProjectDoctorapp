@@ -10,6 +10,7 @@ import 'package:college_project_doctor/constants/string.dart';
 import 'package:college_project_doctor/modal/call.dart';
 import 'package:college_project_doctor/provider/userProvider.dart';
 import 'package:college_project_doctor/screens/chatScreen/chatScreen.dart';
+import 'package:college_project_doctor/screens/chatScreen/mainScreen.dart';
 import 'package:college_project_doctor/services/callMethods.dart';
 
 import 'package:flutter/material.dart';
@@ -57,7 +58,7 @@ class _CallScreenState extends State<CallScreen> {
     _addAgoraEventHandlers();
     await _engine.enableWebSdkInteroperability(true);
     VideoEncoderConfiguration configuration = VideoEncoderConfiguration();
-    configuration.dimensions = VideoDimensions(1920, 1080);
+    configuration.dimensions = VideoDimensions(1080, 2287);
     await _engine.setVideoEncoderConfiguration(configuration);
     await _engine.joinChannel(token, widget.call.channelId, null, 0);
   }
@@ -255,7 +256,7 @@ class _CallScreenState extends State<CallScreen> {
 
   void _onCallEnd(BuildContext context) {
     Navigator.pushReplacement(
-        context, MaterialPageRoute(builder: (context) => ChatScreen()));
+        context, MaterialPageRoute(builder: (context) => ChatMainScreen()));
   }
 
   void _onSwitchCamera() {
@@ -323,7 +324,7 @@ class _CallScreenState extends State<CallScreen> {
         child: Stack(
           children: <Widget>[
             _viewRows(),
-            // _panel(),
+            _panel(),
             _toolbar(),
           ],
         ),

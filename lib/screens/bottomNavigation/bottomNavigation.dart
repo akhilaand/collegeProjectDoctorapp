@@ -17,7 +17,7 @@ class _Bottom_NavigationState extends State<Bottom_Navigation>
   void initState() {
     // TODO: implement initState
     super.initState();
-    controller = TabController(length: 4, vsync: this);
+    controller = TabController(length: 2, vsync: this);
   }
 
   @override
@@ -43,16 +43,14 @@ class _Bottom_NavigationState extends State<Bottom_Navigation>
               Icons.home,
             )),
             Tab(icon: Icon(Icons.chat)),
-            Tab(icon: Icon(Icons.assignment_outlined)),
-            Tab(icon: Icon(Icons.favorite_border)),
+
           ],
         ),
       ),
       body: TabBarView(controller: controller, children: [
         HomeScreen(),
         ChatMainScreen(),
-        HomeScreen(),
-        HomeScreen(),
+
       ]),
     );
   }

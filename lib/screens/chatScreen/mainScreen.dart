@@ -112,16 +112,12 @@ class ChatRoomListTile extends StatelessWidget {
               height: 60,
               child: Row(
                 children: [
-                  // CircleAvatar(
-                  //   radius: 30,
-                  //   child: ClipRRect(
-                  //     borderRadius: BorderRadius.circular(50),
-                  //     child: Image.network(
-                  //       doctorPic,
-                  //       fit: BoxFit.cover,
-                  //     ),
-                  //   ),
-                  // ),
+                  CircleAvatar(
+                    radius: 25,
+backgroundImage: AssetImage(
+  "assets/images/avatar.jpg"
+),
+                  ),
                   SizedBox(
                     width: 10,
                   ),
